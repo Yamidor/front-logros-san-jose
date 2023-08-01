@@ -7,7 +7,6 @@ table.customTable {
     border-style: solid;
     color: #000000;
   }
-  
   table.customTable td, table.customTable th {
     border-width: 2px;
     border-color: #7EA8F8;
@@ -17,6 +16,32 @@ table.customTable {
   
   table.customTable thead {
     background-color: #7EA8F8;
+  }
+  .actions{
+    display: flex;
+    justify-content: center;
+  }
+  .actions svg{
+    margin-left: 5px;
+  }
+  .actions svg:hover{
+    opacity: .5;
+  }
+  .container-botton-new{
+    position: absolute;
+    right: 280px;
+    top: 60px
+  }
+  .container-botton-new button{
+    background: #5796cd;
+    color: #FFFFFF;
+    padding: 5px;
+    border-radius: 8px;
+    border: solid 1px #075ba4;
+    box-shadow: 0 0 10px #000000;
+  }
+  .container-botton-new button:hover{
+    background: #021d34;
   }
 header{
 	height: 15vh;
@@ -37,7 +62,7 @@ header{
 	list-style: none
 }
 #menu ul {
-	width: 100%;
+	width: 80%;
 }
 #menu li {
 	float: left;
@@ -119,6 +144,27 @@ header{
 	#menu input:checked ~ ul {display:block}
 }
 
+.user{
+	position: absolute;
+	right: 200px;
+	top: 15px;
+	display: flex;
+}
+.user button{
+	background: linear-gradient(to bottom,  #154d04,  #3fd810);
+	color: white;
+	margin-left: 5px;
+	padding: 5px;
+	border-radius: 10px;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 2px solid black;
+}
+.user button:hover{
+	background: linear-gradient(to bottom,  #4e0603,  #e21009);
+	
+}
 main{
     height: 70vh;
     display: flex;
@@ -128,7 +174,63 @@ main{
 footer{
     height: 15vh;
     background: linear-gradient(to top,  #0099CC,  #91FFCF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #f2f2f2;
+}
+
+.container {
+	margin: 100px auto;
+	width: 400px;
+	background-color: #fff;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+	font-size: 36px;
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+label {
+	display: block;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"], input[type="number"], select, textarea{
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: none;
+	background-color: #f2f2f2;
+	margin-bottom: 20px;
+}
+
+button{
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #3e8e41;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -136,4 +238,47 @@ footer{
 }
 body{
     background: #fafdfd;;
+}
+table.customTable {
+    width: 60%;
+    background-color: #FFFFFF;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: #7EA8F8;
+    border-style: solid;
+    color: #000000;
+  }
+  
+  table.customTable td, table.customTable th {
+    border-width: 2px;
+    border-color: #7EA8F8;
+    border-style: solid;
+    padding: 5px;
+  }
+  
+  table.customTable thead {
+    background-color: #7EA8F8;
+  }
+
+  .actions svg{
+    margin-left: 5px;
+  }
+  .actions svg:hover{
+    opacity: .5;
+  }
+  .activities{
+    position: absolute;
+    bottom: 70px;
+  }
+.container-info{
+    width: 40%;
+    height: 60vh;
+    background: #928b8b;
+    border-radius: 10px;
+    margin-right: 40px;
+    padding: 10px;
+}
+.container-info input{
+    height: 30px;
+    width: 50%;
 }
