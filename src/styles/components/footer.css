@@ -1,0 +1,7 @@
+footer{
+    height: 15vh;
+    background: linear-gradient(to top,  #0099CC,  #91FFCF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

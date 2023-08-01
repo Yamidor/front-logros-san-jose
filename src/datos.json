@@ -1,0 +1,76 @@
+{
+    "logros":[
+        {
+            "id": "01",
+            "name": "comprende matematicas",
+            "course": {
+                "id": "01",
+                "name": "SEXTO"
+            },
+            "period": {
+                "id": "01",
+                "name": "Primero"
+            },
+            "teacher": {
+                "id": "01",
+                "name": "Juan",
+                "user": "Juan@",
+                "password": "1234"
+            },
+            "subject": {
+                "id": "01",
+                "name": "Matematicas"
+            },
+            "activity": [
+                {
+                    "id": "01",
+                    "name": "Actviadad normal mateamaticas",
+                    "tipo": true
+                },
+                {
+                    "id": "02",
+                    "name": "Actviadad refuerzo mateamaticas",
+                    "tipo": false
+                }
+            ]
+        
+        },
+        {
+            "id": "02",
+            "name": "comprende matematicas figuaras",
+            "course": {
+                "id": "01",
+                "name": "SEXTO"
+            },
+            "period": {
+                "id": "01",
+                "name": "Primero"
+            },
+            "teacher": {
+                "id": "01",
+                "name": "Juan",
+                "user": "Juan@",
+                "password": "1234"
+            },
+            "subject": {
+                "id": "01",
+                "name": "Matematicas"
+            },
+            "activity": [
+                {
+                    "id": "03",
+                    "name": "Actviadad normal mateamaticas figuras",
+                    "tipo": true
+                },
+                {
+                    "id": "04",
+                    "name": "Actviadad refuerzo mateamaticas fifuras",
+                    "tipo": false
+                }
+            ]
+        
+        }
+
+    ]
+}
+

@@ -1,0 +1,12 @@
+.container-info{
+    width: 40%;
+    height: 60vh;
+    background: #928b8b;
+    border-radius: 10px;
+    margin-right: 40px;
+    padding: 10px;
+}
+.container-info input{
+    height: 30px;
+    width: 50%;
+}
