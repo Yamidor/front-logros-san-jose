@@ -1,6 +1,5 @@
 import React from 'react'
 import { createBrowserRouter, createRoutesFromElements, Routes, Route} from "react-router-dom";
-import Home from '../containers/home';
 import LogrosView from '../containers/LogrosView';
 import Layout from '../components/Layout';
 import ListActivities from '../containers/ListActivities';
