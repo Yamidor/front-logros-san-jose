@@ -12,5 +12,8 @@ export const courseRepository = {
         name:course.nombre,
         
       }))
+    },
+    getCourseById: async (id) => {
+      return await http.get<any>('https://logros-san-jose-efe5a28642ce.herokuapp.com/api/v1/cursos/'+id)
     }
   }

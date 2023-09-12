@@ -12,5 +12,8 @@ export const periodRepository = {
         name:period.nombre,
         
       }))
+    },
+    getPeriodById: async (id) => {
+      return await http.get<any>('https://logros-san-jose-efe5a28642ce.herokuapp.com/api/v1/periodos/'+id)
     }
   }

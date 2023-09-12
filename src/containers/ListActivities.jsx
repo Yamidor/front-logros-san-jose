@@ -1,69 +1,123 @@
 import React, {useEffect, useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { redirect, useNavigate } from "react-router-dom";
-import { faPencilSquare, faFilePdf, faListAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPencilSquare, faFilePdf, faListAlt, faPlusCircle, faEye } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
 import { AchievementService } from '../domain/services/AchievementService'
+import { activityService} from '../domain/services/ActivityService'
 import { CourseService } from '../domain/services/CourseService'
 
 import '../styles/containers/listActivities.css'
 
 const ListActivities = ()=>{
     const [achievements, setAchievements] = useState([])
+    const [activities, setActivities] = useState([])
     const [courses, setCourses] = useState([])
     const navigate = useNavigate();
-    const id = localStorage.getItem('user')
-    const formLogro = ()=>{
-        const cursosOptions = `<select name='id_rol'   data-Live-search='true' required>${courses.map(curso => `<option value=${curso.id}>${curso.name}</option>`)}</select>`
-        console.log(cursosOptions)
+    const id_user = localStorage.getItem('user')
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+    const formLogro = (id)=>{
+        
         Swal.fire({
-            title: "Registrar Logro",
+            title: "Registrar Actividad",
             html: `
             <form id="formUser">
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <label for="">Logro(*):</label>
-                    <input class="form-control" type="text" name="nombres" id="nombres" maxlength="100" placeholder="Nombre" required>
+                    <label for="">Nombre Actividad(*):</label>
+                    <textarea id="nombre" name="nombre" rows="4" cols="50"></textarea><br><br>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="">Curso(*):</label>
-                    ${cursosOptions}
+                  <label for="normal">Selecciona el tipo de actividad:</label><br>
+                  <select id="normal" name="normal">
+                      <option value="true">Normal</option>
+                      <option value="false">Recuperación</option>
+                  </select><br><br>
                   </div>
                 </div>
-              </div>
-                                                                                             
-            </form>`
-        })
+              </div>                                                                              
+            </form>`,
+            customClass: {
+              container: 'custom-swal-container',
+              popup: 'custom-swal-popup',
+              content: 'custom-swal-content'
+            },
+            preConfirm:() => {
+                const nombre = Swal.getPopup().querySelector('#nombre').value;
+                const normal = Swal.getPopup().querySelector('#normal').value;
+                const logroId = id
+                return{
+                  nombre,
+                  normal,
+                  logroId
+                } 
+            }
+        }).then(async(e) => {
+            if (e.value.nombre && e.value.normal) {
+                try {
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Actividad registrada'
+                });
+                await activityService.createActivite(JSON.stringify(e.value))
+                await AchievementService.getAchievements(id_user).then(setAchievements)
+              } catch (error) {
+                Toast.fire({
+                  icon: 'error',
+                  title: 'No se pudo resgitrar actividad'
+                });
+              } 
+            }else{
+              Toast.fire({
+                  icon: 'error',
+                  title: 'Debes ingresar los campos obligatorios'
+                });
+            }
+        });
     }
 
-    const viewActivities  = (activities)=>{
-        const act=[]
-        activities.map((item)=>{
-            if(item.tipo){
-                let html = `<li>${item.name}</li>`
-                act.push(html)
-            }
-        })
+    const viewActivities  = async (id)=>{
+        const res= await activityService.getActivitesById(id)
+        console.log(res)
         Swal.fire({
             title: 'Actividades para este logro',
-            html: `<ul>
-                       ${act} 
-                    </ul>`,
+            html: `<div class="container">
+                      <div class="row">
+                          <div class="col-md-6 bg-primary text-white">
+                              <h2>Actividades</h2>
+                              <ul class="list-group">
+                                ${res.map((activity, index) => activity.normal? `<li class="list-group-item" key=${index}>${activity.nombre}</li>`:'').join('')}
+                              </ul>
+                          </div>
+                          <div class="col-md-6 bg-warning text-white">
+                              <h2>Recuperaciones</h2>
+                              <ul class="list-group">
+                                ${res.map((activity, index) => !activity.normal? `<li class="list-group-item" key=${index}>${activity.nombre}</li>`:'').join('')}
+                              </ul>
+                          </div>
+                      </div>
+                    </div>`
             
         })
     }
-    const generatePdf = ()=>{
-        console.log("entre")
-        navigate("/viewPdf");
-    }
-
+    
     useEffect( async ()=>{
-        await AchievementService.getAchievements(id).then(setAchievements)
+        await AchievementService.getAchievements(id_user).then(setAchievements)
         await CourseService.getCourses().then(setCourses)
 
     }, [])
@@ -91,10 +145,9 @@ const ListActivities = ()=>{
                     <td>{item.period.nombre}</td>
                     <td>{item.subject.nombre}</td>
                     <td className='actions'>
-                        <FontAwesomeIcon onClick={()=>formLogro()} icon={faPlusCircle } size="lg" color='#0D1FD1'/>
-                        <FontAwesomeIcon onClick={()=>viewActivities()} icon={faListAlt} size="lg" color='#1A851F'/>
-                        <FontAwesomeIcon onClick={()=>viewActivities()} icon={faListAlt} size="lg" color='#D1950D'/>
-                        <FontAwesomeIcon onClick={()=>generatePdf()} icon={faFilePdf} size="lg" color='#B52323'/>
+                        <FontAwesomeIcon onClick={()=>formLogro(item.id)} icon={faPlusCircle } size="lg" color='#0D1FD1'/>
+                        <FontAwesomeIcon onClick={()=>viewActivities(item.id)} icon={faEye } size="lg" color='#A5A5A5'/>
+                        
                     </td>
                 </tr>
     
@@ -103,6 +156,7 @@ const ListActivities = ()=>{
                 
             </tbody>
         </table>
+        
         
         
         

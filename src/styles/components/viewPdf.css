@@ -1,5 +1,6 @@
 .container-info{
-    width: 40%;
+    display: flex;
+    width: 30%;
     height: 60vh;
     background: #928b8b;
     border-radius: 10px;
@@ -8,5 +9,53 @@
 }
 .container-info input{
     height: 30px;
-    width: 50%;
+    width: 100%;
 }
+.container-info input[type="checkbox"]{
+    height: 10px;
+    width: 10px;
+}
+.container-info select{
+    height: 30px;
+    width: 100%
+}
+.info-logros{
+    padding-left: 50px;
+}
+
+/* Checkbox.css */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-checkbox {
+
+    appearance: none;
+    width: 10px; /* Ajusta el tamaño del checkbox */
+    height: 10px; /* Ajusta el tamaño del checkbox */
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  .custom-checkbox:checked {
+    background-color: #05bd0e;
+    border-color: #05bd0e;
+  }
+  
+  .checkbox-label {
+    font-size: 15px;
+  }
+  .select{
+    background-color: #05bd33;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+.select-actividad{
+  background-color: #059bbd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+  

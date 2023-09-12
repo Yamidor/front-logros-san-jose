@@ -2,5 +2,8 @@ import { periodRepository } from '../../infraestructure/repositories/period.repo
 export const PeriodService = {
     getPeriods: () => {
       return periodRepository.getPeriods()
+    },
+    getPeriodById: (id) => {
+      return periodRepository.getPeriodById(id)
     }
   }

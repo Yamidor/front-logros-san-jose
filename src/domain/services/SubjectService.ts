@@ -2,5 +2,8 @@ import { subjectRepository } from '../../infraestructure/repositories/subject.re
 export const SubjectService = {
     getSubjects: () => {
       return subjectRepository.getSubjects()
+    },
+    getSubjectById: (id) => {
+      return subjectRepository.getSubjectById(id)
     }
   }

@@ -12,5 +12,8 @@ export const subjectRepository = {
         name:subject.nombre,
         
       }))
+    },
+    getSubjectById: async (id) => {
+      return await http.get<any>('https://logros-san-jose-efe5a28642ce.herokuapp.com/api/v1/materias/'+id)
     }
   }

@@ -6,7 +6,6 @@ import Footer from './Footer';
 import Login from "../containers/Login";
 import '../styles/components/app.css'
 
-
 const Layout = ()=>{
     const [idUser, setIdUser] = useState(null)
     useEffect(() => {

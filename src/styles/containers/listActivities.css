@@ -29,3 +29,31 @@ table.customTable {
     position: absolute;
     bottom: 70px;
   }
+  .actividades-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+  .seccion {
+    flex-basis: 48%;
+    padding: 10px;
+  }
+
+  .actividades {
+    margin-bottom: 10px;
+  }
+
+  /* Estilos específicos de las actividades de recuperación */
+  .actividades-recuperacion {
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    color: #a94442;
+  }
+
+  /* Ejemplo de ajuste de tamaño para el modal */
+
+.swal2-popup{
+  width: 70em !important;
+}

@@ -219,8 +219,7 @@ const LogrosView = ()=>{
                   materiaId,
                   periodoId,
                   profesorId: localStorage.getItem('user')
-                }
-                
+                } 
             }
         }).then(async(e) => {
           if (e.value.nombre && e.value.numero) {
@@ -236,10 +235,7 @@ const LogrosView = ()=>{
                 icon: 'error',
                 title: 'No se pudo resgitrar el logro'
               });
-              
-            }
-            
-            
+            } 
           }else{
             Toast.fire({
                 icon: 'error',
